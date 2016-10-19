@@ -1,10 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var http = require('http');
-var https = require('https');
 var keys  = require("./config.js");
 var request = require('request');
-var path = require('path');
 
 var app = express();
 
@@ -18,11 +15,8 @@ var queryRestaurants = googleHost + '/maps/api/place/textsearch/json?query=resta
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-
-var publicPath = path.join(__dirname, 'public');
-
 // We point to our static assets
-app.use(express.static(publicPath));
+app.use(express.static(__dirname));
 
 app.get('/', function(req,res){
    console.log('inside get line 26')
